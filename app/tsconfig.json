@@ -9,7 +9,7 @@
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "sourceMap": true,
-      "baseUrl": "./front",
+      "baseUrl": "./front"
     },
     "include": [
       "front/**/*.ts",

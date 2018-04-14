@@ -13,6 +13,7 @@ import User from 'model/User'
 
 import Dashboard from './dashboard/Dashboard'
 import Vacations from './vacations/Vacations'
+import Projects from './projects/Projects'
 
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
@@ -58,6 +59,7 @@ export default class App extends React.PureComponent<RouteComponentProps<{}>, Lo
                         <ContentBlock>
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/vacations' component={Vacations} />
+                            <Route path='/products' component={Projects} />
                         </ContentBlock>
                     </Content>
                     <Footer className={this.s('footer')}>

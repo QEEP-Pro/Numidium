@@ -20,4 +20,8 @@ export default [
         icon: IconType.CALENDAR,
         title: 'Отпуска', key: 'vacations', path: '/vacations',
     } as MenuItem,
+    {
+        icon: IconType.APPSTORE,
+        title: 'Продукты', key: 'projects', path: '/projects',
+    } as MenuItem,
 ]
