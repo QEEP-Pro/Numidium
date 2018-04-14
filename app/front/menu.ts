@@ -22,6 +22,6 @@ export default [
     } as MenuItem,
     {
         icon: IconType.APPSTORE,
-        title: 'Продукты', key: 'projects', path: '/projects',
+        title: 'Проекты', key: 'projects', path: '/projects',
     } as MenuItem,
 ]

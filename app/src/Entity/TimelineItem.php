@@ -8,16 +8,14 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 /**
  * @ApiResource(
  *      attributes={
- *          "access_control"="is_granted('ROLE_USER')",
- *          "normalization_context"={"groups"={"owner"}},
- *          "denormalization_context"={"groups"={"owner"}}
+ *          "access_control"="is_granted('ROLE_USER')"
  *      }
  * )
- * @ApiFilter(DateFilter::class, properties={"end"})
  *
  * @ORM\Entity
  */
@@ -33,31 +31,38 @@ class TimelineItem
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string")
      *
      * @Groups({"owner"})
      */
-    private $start;
+    private $title;
 
     /**
      * @ORM\Column(type="date")
      *
      * @Groups({"owner"})
      */
-    private $end;
+    private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="vacations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\Column(type="TimelineItemStatus")
+     * @DoctrineAssert\Enum(entity="App\DBAL\Types\TimelineItemStatus")
      *
      * @Groups({"owner"})
      */
-    private $user;
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="timelineItems")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     *
+     * @Groups({"owner"})
+     */
+    private $project;
 
     public function __construct()
     {
-        $this->start = new \DateTime();
-        $this->end = new \DateTime();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -65,38 +70,38 @@ class TimelineItem
         return $this->id;
     }
 
-    public function getStart(): \DateTime
+    public function getTitle(): string
     {
-        return $this->start;
+        return $this->title;
     }
 
-    public function setStart(\DateTime $start): TimelineItem
+    public function setTitle(string $title): TimelineItem
     {
-        $this->start = $start;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getEnd(): \DateTime
+    public function getStatus(): string
     {
-        return $this->end;
+        return $this->status;
     }
 
-    public function setEnd(\DateTime $end): TimelineItem
+    public function setStatus(string $status): TimelineItem
     {
-        $this->end = $end;
+        $this->status = $status;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getDate(): \DateTime
     {
-        return $this->user;
+        return $this->date;
     }
 
-    public function setUser(?User $user): TimelineItem
+    public function setEnd(\DateTime $date): TimelineItem
     {
-        $this->user = $user;
+        $this->date = $date;
 
         return $this;
     }

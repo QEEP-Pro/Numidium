@@ -59,7 +59,7 @@ export default class App extends React.PureComponent<RouteComponentProps<{}>, Lo
                         <ContentBlock>
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/vacations' component={Vacations} />
-                            <Route path='/products' component={Projects} />
+                            <Route path='/projects' component={Projects} />
                         </ContentBlock>
                     </Content>
                     <Footer className={this.s('footer')}>

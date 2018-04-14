@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +18,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "denormalization_context"={"groups"={"owner"}}
  *      }
  * )
- * @ApiFilter(DateFilter::class, properties={"end"})
  *
  * @ORM\Entity
  */
@@ -33,31 +33,31 @@ class Project
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string")
      *
      * @Groups({"owner"})
      */
-    private $start;
+    private $title;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\OneToMany(
+     *     targetEntity="TimelineItem",
+     *     mappedBy="project",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
      *
      * @Groups({"owner"})
      */
-    private $end;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="vacations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     * @Groups({"owner"})
-     */
-    private $user;
+    private $timelineItems;
 
     public function __construct()
     {
-        $this->start = new \DateTime();
-        $this->end = new \DateTime();
+    }
+
+    public function getTimelineItems(): Collection
+    {
+        return $this->timelineItems;
     }
 
     public function getId(): ?int
@@ -65,39 +65,16 @@ class Project
         return $this->id;
     }
 
-    public function getStart(): \DateTime
+    public function getTitle(): string
     {
-        return $this->start;
+        return $this->title;
     }
 
-    public function setStart(\DateTime $start): Project
+    public function setTitle(string $title): Project
     {
-        $this->start = $start;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getEnd(): \DateTime
-    {
-        return $this->end;
-    }
-
-    public function setEnd(\DateTime $end): Project
-    {
-        $this->end = $end;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): Project
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 }
