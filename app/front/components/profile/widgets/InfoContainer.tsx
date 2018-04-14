@@ -3,18 +3,40 @@ import { connect } from 'react-redux'
 import * as moment from 'moment'
 
 import { AppState } from 'reducers'
+import usersAction, { UsersActions } from 'store/users/actions'
+import Loader from 'components/common/Loader'
+import User from 'model/User'
 
 import { Props as ComponentProps } from './Info'
 
 
-export default function (Info: React.ComponentClass<ComponentProps>) {
+interface Props {
+    loading?: boolean
+    error?: boolean
+    user?: User
+}
 
-    
-    @(connect(mapStateToProps) as any)
-    class Wrapped extends React.Component<{}, {}> {
+export default function (User: React.ComponentClass<ComponentProps>) {
+
+    type ConatinerProps = Props & UsersActions
+
+    @(connect(mapStateToProps, { ...usersAction }) as any)
+    class Wrapped extends React.Component<ConatinerProps, {}> {
 
         render() {
-            return <Info profile={[]} />
+            const { loading, error, user } = this.props
+
+            return (
+                <Loader loading={loading || !user} error={error}>
+                    {user && <User profile={user} />}
+                </Loader>
+            )
+        }
+
+        componentDidMount() {
+            const { getMe, user } = this.props
+
+            if (getMe && !user) getMe()
         }
     }
 
@@ -22,4 +44,7 @@ export default function (Info: React.ComponentClass<ComponentProps>) {
 }
 
 const mapStateToProps = (state: AppState) => ({
+    loading: !!state.users.get.loading,
+    error: !!state.users.get.error,
+    user: state.users.entities.find(u => u.id === state.users.meId),
 })

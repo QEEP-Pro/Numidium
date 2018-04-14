@@ -73,6 +73,27 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups({"any", "me"})
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups({"any", "me"})
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups({"any", "me"})
+     */
+    private $additionalContact;
+
+    /**
      * @ORM\Column(type="boolean")
      *
      * @Groups({"any", "me"})
@@ -114,6 +135,42 @@ class User implements UserInterface, \Serializable
         $this->email = $email;
 
         return $this;
+    }
+
+    public function setName(string $name): User
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setPhone(string $phone): User
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setAdditionalContact(string $additionalContact): User
+    {
+        $this->additonalContact = $additionalContact;
+
+        return $this;
+    }
+
+    public function getAdditionalContact(): ?string
+    {
+        return $this->additionalContact;
     }
 
     public function getSalt(): ?string
