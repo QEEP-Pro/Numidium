@@ -31,10 +31,10 @@ interface Props {
 
 export default function (Vacations: React.ComponentClass<ComponentProps>) {
 
-    type ConatinerProps = Props
+    type ContainerProps = Props
 
     @(connect(mapStateToProps, mapDispatchToProps) as any)
-    class Wrapped extends React.Component<ConatinerProps, {}> {
+    class Wrapped extends React.Component<ContainerProps, {}> {
 
         render() {
             const {

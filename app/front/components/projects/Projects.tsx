@@ -39,7 +39,7 @@ class Projects extends React.PureComponent<Props, LocalState> {
                     </Col>
                     <Col md={16} xs={12}>
                         {this.state.selectedProject &&
-                            <ProjectTimeline items={ this.state.selectedProject.timeline }/>
+                            <ProjectTimeline items={ this.state.selectedProject.timelineItems }/>
                         }
                     </Col>
                 </Row>

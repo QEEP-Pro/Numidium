@@ -2,9 +2,9 @@ import {TimelineItem} from '../components/projects/widgets/Timeline'
 
 import Entity from './Entity'
 
-interface Project {
+interface Project extends Entity {
     title: string,
-    timeline: TimelineItem[]
+    timelineItems: TimelineItem[]
 }
 
 export default Project

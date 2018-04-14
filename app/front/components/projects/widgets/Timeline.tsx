@@ -3,9 +3,9 @@ import * as React from 'react'
 import { Timeline } from 'antd'
 
 export enum TimelineStatus {
-    Done,
-    InProgress,
-    Pending,
+    Done = 'done',
+    InProgress = 'in_progress',
+    Pending = 'pending',
 }
 
 export interface TimelineItem {

@@ -2,12 +2,6 @@ import * as React from 'react'
 
 import Project from 'model/Project'
 
-export enum TimelineStatus {
-    Done,
-    InProgress,
-    Pending,
-}
-
 export interface Props {
     projects: Project[],
     setProject: Function
