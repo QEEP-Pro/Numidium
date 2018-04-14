@@ -16,28 +16,28 @@ export class UserComponent extends React.PureComponent<Props, {}> {
 
         return (
             <React.Fragment>
-                <Card title={profile.name}>
-                    <Row  type="flex" justify="space-between" gutter={8}>
-                        <Col xs={2}>
-                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size="large" icon="user" />
-                        </Col>
-                        <Col xs={22}>
-                            <p>{profile.additionalContact} <a><Icon type="edit" /></a></p>
-                            <p>Номер телефона: {profile.phone} <a><Icon type="edit" /></a></p>
-                            <p>e-mail: {profile.email} <a><Icon type="edit" /></a></p>
-                        </Col>
-                        <Col xs={24}>
-                            <Card title={'Полученные ачивки'}>
-                               Ачивки
-                            </Card>
-                        </Col>
-                        <Col xs={24}>
-                            <Card title={'Матрица компетенций'}>
-                               компетенции
-                            </Card>
-                        </Col>
-                    </Row>
-                </Card>
+                <Row gutter={8}>
+                    <Col md={4} xs={12}>
+                        <Card cover={
+                            <img alt="avatar" src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
+                        }>
+                            <h3>{profile.name}</h3>
+                            <p>{profile.additionalContact}</p>
+                            <p>Номер телефона: {profile.phone} </p>
+                            <p>e-mail: {profile.email}</p>
+                        </Card>
+                    </Col>
+                    <Col xs={10}>
+                        <Card title={'Полученные ачивки'}>
+                          Ачивки
+                        </Card>
+                    </Col>
+                    <Col xs={10}>
+                        <Card title={'Матрица компетенций'}>
+                            компетенции
+                        </Card>
+                    </Col>
+                </Row>
             </React.Fragment>
         )
     }

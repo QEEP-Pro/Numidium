@@ -13,7 +13,7 @@ export interface MenuItem {
 
 export default [
     {
-        icon: IconType.SMILE,
+        icon: IconType.USER,
         title: 'Личный кабинет', key: 'profile', path: '/profile',
     } as MenuItem,
     {
