@@ -6,11 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *      attributes={
  *          "access_control"="is_granted('ROLE_USER')",
+ *          "normalization_context"={"groups"={"skill"}},
+ *          "denormalization_context"={"groups"={"skill"}}
  *      }
  * )
  *
@@ -19,13 +22,19 @@ use ApiPlatform\Core\Annotation\ApiResource;
 class Skill
 {
     /**
+     * @Groups({"skill"})
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
-    /** @ORM\OneToMany(targetEntity="Skill", mappedBy="parent") */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\OneToMany(targetEntity="Skill", mappedBy="parent")
+     */
     private $children;
 
     /**
@@ -34,10 +43,18 @@ class Skill
      */
     private $parent;
 
-    /** @ORM\Column(type="string", length=255) */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\Column(type="string", length=255)
+     */
     private $title;
 
-    /** @ORM\OneToMany(targetEntity="SkillLevel", mappedBy="skill", orphanRemoval=true) */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\OneToMany(targetEntity="SkillLevel", mappedBy="skill", orphanRemoval=true)
+     */
     private $levels;
 
     public function __construct()

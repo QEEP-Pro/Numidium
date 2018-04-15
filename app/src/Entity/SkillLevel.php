@@ -3,20 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ApiResource(
- *      attributes={
- *          "access_control"="is_granted('ROLE_USER')",
- *      }
- * )
- *
- * @ORM\Entity
- */
+/** @ORM\Entity */
 class SkillLevel
 {
     /**
+     * @Groups({"skill"})
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -29,13 +23,25 @@ class SkillLevel
      */
     private $skill;
 
-    /** @ORM\Column(type="integer") */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\Column(type="integer")
+     */
     private $position = 0;
 
-    /** @ORM\Column(type="string", length=255) */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\Column(type="string", length=255)
+     */
     private $title;
 
-    /** @ORM\Column(type="text") */
+    /**
+     * @Groups({"skill"})
+     *
+     * @ORM\Column(type="text")
+     */
     private $description;
 
     public function getId(): ?int
