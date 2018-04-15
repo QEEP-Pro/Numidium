@@ -23,4 +23,8 @@ export default [
         icon: IconType.BOOK,
         title: 'Библиотека', key: 'libs', path: '/libs',
     } as MenuItem,
+    {
+        icon: IconType.FORK,
+        title: 'Компетенции', key: 'skills', path: '/skills',
+    } as MenuItem,
 ]

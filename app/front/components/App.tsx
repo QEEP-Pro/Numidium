@@ -20,6 +20,8 @@ import Libraries from './libraries/Libraries'
 import Library from './libraries/Library'
 import LibraryForm from './libraries/LibraryForm'
 
+import Skills from './skills/Skills'
+
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
 
@@ -64,7 +66,7 @@ export default class App extends React.PureComponent<RouteComponentProps<{}>, Lo
                         <ContentBlock>
                             <Route path="/" exact component={Dashboard} />
 
-                            <Route path="/vacations" component={Vacations} />
+                            <Route path="/vacations" exact component={Vacations} />
 
                             <Route path="/libs" exact component={Libraries} />
                             <Route path="/libs/form/:id?" render={({ match, history }) =>
@@ -73,6 +75,8 @@ export default class App extends React.PureComponent<RouteComponentProps<{}>, Lo
                             <Route path="/libs/show/:id" render={({ match }) =>
                                 <Library id={parseInt(match.params.id, 10)} />
                             } />
+
+                            <Route path="/skills" exact component={Skills} />
                         </ContentBlock>
                     </Content>
 
