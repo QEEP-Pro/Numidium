@@ -46,6 +46,7 @@ class SkillLevel
     public function setId(int $id): SkillLevel
     {
         $this->id = $id;
+
         return $this;
     }
 
