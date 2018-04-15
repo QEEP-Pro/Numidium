@@ -15,7 +15,9 @@ import findMostSimilar from 'util/findMostSimilar'
 import Dashboard from './dashboard/Dashboard'
 
 import Vacations from './vacations/Vacations'
+
 import Profile from './profile/Profile'
+import ProfileForm from './profile/form/ProfileForm'
 
 import Libraries from './libraries/Libraries'
 import Library from './libraries/Library'
@@ -69,6 +71,9 @@ export default class App extends React.PureComponent<RouteComponentProps<{}>, Lo
                             <Route path='/vacations' component={Vacations} />
 
                             <Route path='/profile' component={Profile} />
+                            <Route path='/profile/edit/:id' render={({ match, history }) =>
+                                <ProfileForm id={parseInt(match.params.id, 10)} goBack={history.goBack} />
+                            } />
 
                             <Route path='/libs' exact component={Libraries} />
                             <Route path='/libs/form/:id?' render={({ match, history }) =>

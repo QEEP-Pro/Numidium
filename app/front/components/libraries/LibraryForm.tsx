@@ -41,7 +41,6 @@ class LibraryForm extends React.PureComponent<Props, {}> {
         return (
             <React.Fragment>
                 <Breadcrumbs breadcrumbs={[ 'Библиотека', breadcrumb ]} />
-
                 <Card>
                     <Form
                         onSubmit={values => submit(values as FormFields)}

@@ -28,6 +28,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "normalization_context"={
  *                  "groups"={"me"}
  *              }
+ *          },
+ *          "put"={
+ *              "access_control"="is_granted('ROLE_USER') and object == user",
+ *              "normalization_context"={
+ *                  "groups"={"me"}
+ *              }
  *          }
  *     }
  * )
