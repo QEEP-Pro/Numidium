@@ -2,6 +2,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import VacationForm from './vacation/ModalForm'
+import Article from './article/Article'
+import Book from './book/Book'
 
 import modalActions, { ModalActions, ModalEnum } from 'store/modal/actions'
 import { AppState } from 'reducers'
@@ -9,6 +11,8 @@ import { AppState } from 'reducers'
 
 const MODAL_COMPONENTS = {
     [ModalEnum.VACATION]: VacationForm,
+    [ModalEnum.ARTICLE]: Article,
+    [ModalEnum.BOOK]: Book,
 }
 
 const mapStateToProps = (state: AppState) => ({
@@ -33,7 +37,7 @@ export default class ModalRoot extends React.Component<Props & ModalActions, {}>
 
         const SpecificModal = (MODAL_COMPONENTS as any)[type]
 
-        return <SpecificModal visible={visible} id={id} />
+        return <SpecificModal {...this.props} />
     }
 }
 
